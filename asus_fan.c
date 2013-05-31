@@ -169,12 +169,12 @@ typedef enum status {
 
 status_t __thermal_status = stable;
 
-static struct tmp_zone zone[NUM_ZONES] = {{ 40,	 180,  1 },
-					  { 55,  200,  1 },
-					  { 70,  220,  2 },
-					  { 85,  230,  3 },
-					  { 100, 240,  5 },
-					  { 105, 254,  7 }}
+static struct tmp_zone zone[NUM_ZONES] = {{ 40,	 80,  1 },
+					  { 55,  110,  1 },
+					  { 70,  130,  2 },
+					  { 85,  160,  3 },
+					  { 100, 190,  5 },
+					  { 105, 210,  7 }};
  
 static void timer_handler(struct work_struct *work);
 static void temp_status_timer(struct work_struct *work);
