@@ -35,8 +35,6 @@
 #include <acpi/acpi_bus.h>
 #include <acpi/acpi_drivers.h>
 
-#include <linux/workqueue.h>
-
 MODULE_AUTHOR("Giulio Piemontese");
 MODULE_LICENSE("GPL");
 MODULE_DESC("Advanced ACPI ASUS fan control");
