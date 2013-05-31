@@ -1,0 +1,11 @@
+TODO LIST:
+==========
+
+* Insert the driver into the pwm/fan linux thermal framework
+* Regulation of the zone limits (once inserted in the thermal framework)
+* Thermal profiles?
+* "realtime" change of the number of samples required to monitor 
+  the temperature
+* Parameters documentation 
+* suggestions are welcome
+* 

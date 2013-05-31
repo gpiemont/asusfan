@@ -1,0 +1,12 @@
+Installation:
+=============
+
+# make
+
+# make install
+
+# modprobe asus_fan
+
+# To autoload the module during the boot add module name at the end of the /etc/modules file
+
+echo asus_fan >> /etc/modules
