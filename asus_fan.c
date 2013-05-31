@@ -37,7 +37,7 @@
 
 MODULE_AUTHOR("Giulio Piemontese");
 MODULE_LICENSE("GPL");
-MODULE_DESC("Advanced ACPI ASUS fan control");
+MODULE_DESCRIPTION("Advanced ACPI ASUS fan control");
 
 #ifndef ASUSFAN_VERBOSE
 #define ASUSFAN_VERBOSE 0
