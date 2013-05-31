@@ -61,7 +61,7 @@ module_param_named(current_zone, asusfan_curr_zone, int, 0444);
 
 MODULE_PARM_DESC(previous_zone, "Previous thermal zone");
 int asusfan_prev_zone = -1;
-module_param_named(previous_zone, asusfan_prev_speed, int, 0444);
+module_param_named(previous_zone, asusfan_prev_zone, int, 0444);
 
 MODULE_PARM_DESC(current_speed, "Current fan speed");
 int asusfan_curr_speed = -1;
