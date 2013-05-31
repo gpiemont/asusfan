@@ -52,7 +52,7 @@ MODULE_DESC("Advanced ACPI ASUS fan control");
 #endif
 
 MODULE_PARM_DESC(verbose, "Enable Speed changing/temperature status messages (0-2)");
-int asusfan_verbose = ACPIFAN_VERBOSE;
+int asusfan_verbose = ASUSFAN_VERBOSE;
 module_param_named(verbose, asusfan_verbose, int, 0600);
 
 MODULE_PARM_DESC(current_zone, "Current thermal zone");
