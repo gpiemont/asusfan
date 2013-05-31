@@ -103,6 +103,7 @@ MODULE_PARM_DESC(temp_num_samples, "Number of samples to establish the temperatu
 int asusfan_num_samples = 0;
 module_param_named(temp_num_samples, asusfan_num_samples, int, 0600);
 
+#if 0
 /*
  * Acpi objects names to store/retrieve the fan speed and 
  * the temperature values, respectively.
@@ -128,8 +129,9 @@ static struct asus_tz_entries[] = {
 	NULL
 };
 
-asus_acpi_platform_no =	0;	/* default platform */
+int asus_acpi_platform_no =	0;	/* default platform */
 
+#endif
 
 /*
  * We took a pre-defined number of samples of temperature from the acpi,
