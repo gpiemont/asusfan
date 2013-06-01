@@ -1,11 +1,13 @@
 TODO LIST:
 ==========
 
-* Insert the driver into the pwm/fan linux thermal framework
-* Regulation of the zone limits (once inserted in the thermal framework)
+* Insert the driver into the pwm/fan linux thermal framework, or move 
+  several module parameters into CONFIG_FS space.
+* Regulation of the zone limits, once parameters are in place.
 * Thermal profiles?
 * "realtime" change of the number of samples required to monitor 
   the temperature
+* Make MONITOR_FREQ and TIMER_FREQ parameters
 * Parameters documentation 
-* suggestions are welcome
-* 
+
+suggestions are welcome
