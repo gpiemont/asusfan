@@ -91,10 +91,6 @@ MODULE_PARM_DESC(min_temp, "Minimum temperature value (°C) that can be evaluate
 int asusfan_min_temp = 0;
 module_param_named(min_temp, asusfan_min_temp, int, 0444);
 
-MODULE_PARM_DESC(temp_status, "Current temperature status");
-static char asusfan_temp_status[11];
-module_param_string(temp_status, asusfan_temp_status, 11 , 0444);
-
 MODULE_PARM_DESC(temp_stable_range, "Within this range (+/-) temperature is considered stable");
 int asusfan_stable_range = ASUSFAN_STABLE_RANGE;
 module_param_named(temp_stable_range, asusfan_stable_range, int, 0600);
@@ -164,10 +160,22 @@ struct tmp_zone {
 int asusfan_current_zone = -1;
 
 typedef enum status { 
-	ascending, descending, stable 
+	stable, 
+	ascending, 
+	descending
 } status_t;
 
 status_t __thermal_status = stable;
+
+const char * const status_name[3] = {
+        "stable",
+        "ascending",
+        "descending"
+};
+
+MODULE_PARM_DESC(temp_status, "Current temperature status");
+char * asusfan_temp_status = "";
+module_param_named(temp_status, asusfan_temp_status, charp, 0444);
 
 static struct tmp_zone zone[NUM_ZONES] = {{ 40,	 80,  1 },
 					  { 55,  110,  1 },
@@ -308,17 +316,17 @@ static void temp_status_timer(struct work_struct *work)
 		if((diff == 0 ) || ((diff <= asusfan_stable_range) && ( diff >= -asusfan_stable_range)))
 		{
 			__thermal_status = stable;
-			snprintf(asusfan_temp_status, 11, "stable");
+			asusfan_temp_status = status_name[0];
 		}
 		else if(diff > asusfan_stable_range )
 		{
 			__thermal_status = ascending;
-			snprintf(asusfan_temp_status, 11, "ascending");
+			asusfan_temp_status = status_name[1];
 		}
 		else if(diff < -asusfan_stable_range )
 		{
 			__thermal_status = descending;
-			snprintf(asusfan_temp_status, 11, "descending");
+			asusfan_temp_status = status_name[2];
 		}
 		if(asusfan_verbose > 1)
 			printk("sample[0] = %d ", samples[0]);
