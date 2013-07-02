@@ -313,7 +313,7 @@ static void temp_status_timer(struct work_struct *work)
 		if(asusfan_verbose > 1)
 			printk("sample[0] = %d , sample[%d] = %d, diff = %d\n", samples[0], fan_num_samples - 1, samples[fan_num_samples-1], diff);
 
-		if((diff == 0 ) || ((diff <= asusfan_stable_range) && ( diff >= -asusfan_stable_range)))
+		if((diff <= asusfan_stable_range) && ( diff >= -asusfan_stable_range))
 		{
 			__thermal_status = stable;
 			asusfan_temp_status = status_name[0];
