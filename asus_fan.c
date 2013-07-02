@@ -355,7 +355,7 @@ static int asus_fan_init(void)
 	wqst = create_singlethread_workqueue("sampler");
 	queue_delayed_work(wqst, &wst, HZ);
 
-	printk("Asus Advanced Fan Control version 0.7\n");
+	printk("Asus Advanced Fan Control version 0.8\n");
 
 	return 0;
 }
