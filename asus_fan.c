@@ -327,7 +327,7 @@ out:
  *           \                       '
  *            \   .             .   /
  *             \  |<---stable-->|  /
- *              \ |             | /    not stable (rising)
+ *              \ |             | /    not stable (ascending)
  *       ------  \|             |/	 +++++
  *________________\______T______/______________
  *                |'.         .'| 
@@ -366,7 +366,7 @@ static void temp_status_timer(struct work_struct *work)
 		}
 		else if(diff > asusfan_stable_range )
 		{	
-			__thermal_status = rising;
+			__thermal_status = ascending;
 			asusfan_temp_status = status_name[1];
 		}
 		else if(diff < -asusfan_stable_range )
