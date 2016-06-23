@@ -340,31 +340,33 @@ out:
  *
  *
  */
- 
+
 static void temp_status_timer(struct work_struct *work)
 {
 	int i = 0;
 	int diff = 0;
 
-	samples[0] = get_temp();
-
-	/* "Parabolic" tolerance curve */
+	samples[fan_sample++] = get_temp();
 
 	if ((fan_sample % ASUSFAN_TEMP_NUM_SAMPLES) == 0)
 	{
-		diff = (samples[0] - samples[fan_num_samples - 1]);
+		/** Last sample - first sample */
+		diff = (samples[fan_num_samples - 1] - samples[0]) / fan_sample;
 
 		if(asusfan_verbose > 1)
-			printk("sample[0] = %d , sample[%d] = %d, diff = %d\n", samples[0], fan_num_samples - 1, samples[fan_num_samples-1], diff);
+			printk("samples[0] = %d , samples[%d] = %d, diff = %d\n", 
+				samples[0], fan_num_samples - 1, samples[fan_num_samples-1], 
+					diff);
 
-		if((diff <= asusfan_stable_range) && ( diff >= -asusfan_stable_range))
+		if((diff == 0 ) || ((diff <= asusfan_stable_range) && 
+					( diff >= -asusfan_stable_range)))
 		{
 			__thermal_status = stable;
 			asusfan_temp_status = status_name[0];
 		}
 		else if(diff > asusfan_stable_range )
-		{
-			__thermal_status = ascending;
+		{	
+			__thermal_status = rising;
 			asusfan_temp_status = status_name[1];
 		}
 		else if(diff < -asusfan_stable_range )
@@ -372,19 +374,19 @@ static void temp_status_timer(struct work_struct *work)
 			__thermal_status = descending;
 			asusfan_temp_status = status_name[2];
 		}
-		if(asusfan_verbose > 1)
-			printk("sample[0] = %d ", samples[0]);
 
-		while(++i < fan_num_samples) {
-			samples[fan_num_samples - i] = samples[fan_num_samples - i -1];
-			if(asusfan_verbose > 1)
-				printk("sample[%d] = %d ", i, samples[i]);
-		}
-		if(asusfan_verbose > 1)
+		if(asusfan_verbose > 2) {
+			for(i = 0; i < fan_num_samples ; i++) {
+				printk("samples[%d] = %d ", i, samples[i]);
+			}
 			printk("\n");
+		}
+
+		/* reset sample counter */
+		fan_sample = 0;
 	}
 
-	queue_delayed_work(wqst, &wst, MONITOR_FREQ * HZ);
+	queue_delayed_work(wqst, &wst, MONITOR_FREQ);
 }
 
 static int asus_fan_init(void)
