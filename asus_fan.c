@@ -282,7 +282,7 @@ static void timer_handler(struct work_struct *work)
 	int curr_zone = 0;
 	int tmp;
 
-	tmp =  get_zone_temp();
+	tmp =  get_temp();
 
 	if (unlikely(tmp == -1))
 		return;
