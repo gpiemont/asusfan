@@ -32,8 +32,16 @@
 #include <linux/module.h>
 #include <linux/delay.h>
 #include <linux/workqueue.h>
+
+#include <linux/acpi.h>
+#include <acpi/platform/acenv.h>
+#include <acpi/platform/aclinux.h>
+#include <acpi/actypes.h>
+#include <acpi/acrestyp.h>
+#include <acpi/acpixf.h>
 #include <acpi/acpi_bus.h>
 #include <acpi/acpi_drivers.h>
+#include <acpi/acexcep.h>
 
 MODULE_AUTHOR("Giulio Piemontese");
 MODULE_LICENSE("GPL");
