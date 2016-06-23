@@ -147,7 +147,8 @@ unsigned int 	fan_sample = 0;
 char 		fan_num_samples = ASUSFAN_TEMP_NUM_SAMPLES;
 char		samples[ASUSFAN_TEMP_NUM_SAMPLES] ;
 
-#define 	MONITOR_FREQ 1
+#define 	TIMER_FREQ 	(2*HZ) 	/* seconds */
+#define 	MONITOR_FREQ	(2*HZ)
 
 /*
  * When the temperature goes down to a low zone it is better to stay at
@@ -156,8 +157,6 @@ char		samples[ASUSFAN_TEMP_NUM_SAMPLES] ;
 
 #define NUM_ZONES 	6
 #define TMP_DIFF 	3
-
-#define TIMER_FREQ 	5	/* seconds */
 
 struct tmp_zone {
 	int tmp;		/* °C */
@@ -201,7 +200,7 @@ static DECLARE_DELAYED_WORK(wst, temp_status_timer);
 static struct workqueue_struct *wqs;
 static struct workqueue_struct *wqst;
 
-static int get_zone_temp(void)
+static int get_temp(void)
 {
         struct acpi_buffer output;
         union acpi_object out_obj;
@@ -225,6 +224,19 @@ static int get_zone_temp(void)
 		asusfan_curr_temp = tmp;
 
 	return tmp;
+}
+
+static inline int get_temp_zone(int tmp) {
+
+	int i;
+
+	for (i = 0 ; i < (NUM_ZONES - 1); i++) {
+		if ((tmp >= zone[i].tmp) && 
+			(tmp < zone[i+1].tmp))
+				return i;
+	}
+
+	return i;
 }
 
 static void set_fan_speed(int speed)
@@ -300,17 +312,41 @@ static void timer_handler(struct work_struct *work)
 					tmp, curr_zone, prev_zone, zone[curr_zone].speed);
 	}
 
+	asusfan_curr_zone = curr_zone;
+	asusfan_prev_zone = prev_zone;
 out:
 	
 	queue_delayed_work(wqs, &ws, (TIMER_FREQ + zone[curr_zone].sleep) * HZ);
 }
 
+/**
+ *
+ *  "Parabolic" tolerance curve :
+ *
+ *          '
+ *           \                       '
+ *            \   .             .   /
+ *             \  |<---stable-->|  /
+ *              \ |             | /    not stable (rising)
+ *       ------  \|             |/	 +++++
+ *________________\______T______/______________
+ *                |'.         .'| 
+ *  not stable    |  '.     .'  |
+ * (descending)   |    '---'    |
+ *                |             '-> T + stable_range
+ *                |
+ *                |
+ *                '-> T - stable_range
+ *
+ *
+ */
+ 
 static void temp_status_timer(struct work_struct *work)
 {
 	int i = 0;
 	int diff = 0;
 
-	samples[0] = get_zone_temp();
+	samples[0] = get_temp();
 
 	/* "Parabolic" tolerance curve */
 
