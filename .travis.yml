@@ -1,5 +1,7 @@
 language: c
 
-before_script: apt-get install kernel-devel
+before_script: 
+  - sudo apt-get update -qq
+  - sudo apt-get install kernel-devel
 
 script: make
