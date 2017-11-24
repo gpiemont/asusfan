@@ -1,3 +1,5 @@
 language: c
 
+before_script: apt-get install kernel-devel
+
 script: make
