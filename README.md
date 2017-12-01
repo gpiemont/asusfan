@@ -31,48 +31,63 @@ A brief look at the driver parameter follows:
  0
  
  \# cat /sys/module/asus_fan/parameters/target_speed 
-  -1
+ 
+ -1
  
 at the sampler behaviour:
 
  \# cat /sys/module/asus_fan/parameters/current_temp 
-  70
+
+ 70
  
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   stable
 
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   descending
 
  \# cat /sys/module/asus_fan/parameters/current_temp 
+  
   62
 
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   ascending
 
  \# cat /sys/module/asus_fan/parameters/current_temp 
+  
   66
  
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   ascending
  
  \# cat /sys/module/asus_fan/parameters/current_temp 
+  
   68
 
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   descending
  
  \# cat /sys/module/asus_fan/parameters/current_temp 
+  
   61
  
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   ascending
  
  \# cat /sys/module/asus_fan/parameters/current_temp 
+  
   67
  
  \# cat /sys/module/asus_fan/parameters/temp_status 
+  
   stable
  
  \# cat /sys/module/asus_fan/parameters/current_temp 
+  
   67
