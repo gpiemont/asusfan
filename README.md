@@ -23,10 +23,12 @@ immediatly after being set or even ignored by the driver.
 A brief look at the driver parameter follows:
 
  \# cat /sys/module/asus_fan/parameters/min_speed 
-  0
+ 
+ 0
 
  \# cat /sys/module/asus_fan/parameters/min_temp 
-  0
+ 
+ 0
  
  \# cat /sys/module/asus_fan/parameters/target_speed 
   -1
