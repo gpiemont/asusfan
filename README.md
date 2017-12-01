@@ -22,55 +22,55 @@ immediatly after being set or even ignored by the driver.
 
 A brief look at the driver parameter follows:
 
- # cat /sys/module/asus_fan/parameters/min_speed 
+ \# cat /sys/module/asus_fan/parameters/min_speed 
   0
 
- # cat /sys/module/asus_fan/parameters/min_temp 
+ \# cat /sys/module/asus_fan/parameters/min_temp 
   0
  
- # cat /sys/module/asus_fan/parameters/target_speed 
+ \# cat /sys/module/asus_fan/parameters/target_speed 
   -1
  
 at the sampler behaviour:
 
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   70
  
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   stable
 
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   descending
 
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   62
 
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   ascending
 
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   66
  
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   ascending
  
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   68
 
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   descending
  
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   61
  
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   ascending
  
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   67
  
- # cat /sys/module/asus_fan/parameters/temp_status 
+ \# cat /sys/module/asus_fan/parameters/temp_status 
   stable
  
- # cat /sys/module/asus_fan/parameters/current_temp 
+ \# cat /sys/module/asus_fan/parameters/current_temp 
   67
