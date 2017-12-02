@@ -1,4 +1,5 @@
 Asus Advanced Fan Control Driver (v.0.8)
+[![Build Status](https://travis-ci.org/gpiemont/asusfan.svg?branch=master)](https://travis-ci.org/gpiemont/asusfan)
 ========================================
 
 This acpi driver, based on previous work by Dmitry Ursegov 
