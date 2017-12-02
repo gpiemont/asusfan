@@ -366,17 +366,17 @@ static void temp_status_timer(struct work_struct *work)
 					( diff >= -asusfan_stable_range)))
 		{
 			__thermal_status = stable;
-			asusfan_temp_statusname = status_name[0];
+			snprintf(asusfan_temp_statusname, 16, status_name[0]);
 		}
 		else if(diff > asusfan_stable_range )
 		{	
 			__thermal_status = ascending;
-			asusfan_temp_statusname = status_name[1];
+			snprintf(asusfan_temp_statusname, 16, status_name[1]);
 		}
 		else if(diff < -asusfan_stable_range )
 		{
 			__thermal_status = descending;
-			asusfan_temp_statusname = status_name[2];
+			snprintf(asusfan_temp_statusname, 16, status_name[2]);
 		}
 
 		if(asusfan_verbose > 2) {
