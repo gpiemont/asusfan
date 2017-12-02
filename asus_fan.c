@@ -181,7 +181,11 @@ const char * const status_name[3] = {
 };
 
 MODULE_PARM_DESC(temp_status, "Current temperature status");
-char * asusfan_temp_status = "";
+
+static char asusfan_temp_statusname[16];
+
+char *asusfan_temp_status = asusfan_temp_statusname;
+
 module_param_named(temp_status, asusfan_temp_status, charp, 0444);
 
 static struct tmp_zone zone[NUM_ZONES] = {{ 40,	 80,  1 },
